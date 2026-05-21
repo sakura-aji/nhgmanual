@@ -902,6 +902,138 @@
       color: white;
     }
 
+
+    /* Simple Medication / Pill Count Chart Popup */
+
+    .pill-count-summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .pill-count-card {
+      background: #f8fbff;
+      border: 1px solid #dce6f1;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .pill-count-card .label {
+      color: #7b8ca5;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 8px;
+    }
+
+    .pill-count-card .value {
+      color: var(--ink);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .pill-count-note-box {
+      background: var(--info-bg);
+      border: 1px solid #d7ecff;
+      border-radius: 18px;
+      padding: 16px 18px;
+      color: var(--info-fg);
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .pill-chart-wrap {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow-x: auto;
+      background: #fff;
+    }
+
+    .pill-chart-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+    }
+
+    .pill-chart-table th {
+      background: #f8fafc;
+      color: #718198;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 13px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pill-chart-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: middle;
+      color: var(--ink-2);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .pill-chart-table tr:last-child td { border-bottom: none; }
+
+    .pill-chart-table input,
+    .pill-chart-table select {
+      height: 44px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .pill-med-name {
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .pill-med-sub {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .variance-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 56px;
+      height: 34px;
+      border-radius: 999px;
+      padding: 0 12px;
+      font-size: 15px;
+      font-weight: 900;
+      background: var(--ok-bg);
+      color: var(--ok-fg);
+    }
+
+    .variance-pill.warn { background: var(--warn-bg); color: var(--warn-fg); }
+    .variance-pill.danger { background: var(--danger-bg); color: var(--danger-fg); }
+
+    .pill-count-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .pill-count-summary { grid-template-columns: 1fr 1fr; }
+      .pill-count-note { grid-template-columns: 1fr; }
+    }
+
     /* Appointment Schedule */
 
     .schedule-wrap {
@@ -1255,7 +1387,7 @@
       </div>
 
       <div class="header-right">
-        <button class="pill-btn light" onclick="openSimpleModal('Medicines')">
+        <button class="pill-btn light" onclick="openPillCountModal()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
           <span class="pill-label">Medicines</span>
         </button>
@@ -1296,7 +1428,7 @@
           </span>
           <h2 class="section-title">Patient Forms &amp; Charts</h2>
         </div>
-        <span class="section-sub">8 items</span>
+        <span class="section-sub">9 items</span>
       </div>
 
       <div class="collapsible-body"><div class="inner">
@@ -1330,6 +1462,13 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1"></rect><path d="M16 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"></path><path d="M9 12h6M9 16h4"></path></svg>
           </span>
           <span class="label">General Chart</span>
+        </button>
+
+        <button class="module-btn" onclick="openPillCountModal()">
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path><path d="M14 7h.01M17 10h.01M11 13h.01"></path></svg>
+          </span>
+          <span class="label">Pill Count<br />Chart</span>
         </button>
         <button class="module-btn" onclick="openClinicalModal('Bowel Frequency')">
           <span class="chip">
@@ -1590,6 +1729,144 @@
         </div>
       `);
     }
+
+
+    function openPillCountModal() {
+      setModal("Medication Count Chart", pillCountForm(), true);
+      setTimeout(updatePillCountRows, 0);
+    }
+
+    function pillCountForm() {
+      const rows = [
+        { name: "Metformin", detail: "500 mg tablet · BD", opening: 42, given: 1, remaining: 41 },
+        { name: "Amlodipine", detail: "5 mg tablet · OM", opening: 21, given: 1, remaining: 20 },
+        { name: "Atorvastatin", detail: "20 mg tablet · ON", opening: 21, given: 0, remaining: 21 },
+        { name: "Paracetamol", detail: "500 mg tablet · PRN", opening: 18, given: 0, remaining: 18 }
+      ];
+
+      return `
+        <div class="pill-count-summary">
+          <div class="pill-count-card">
+            <div class="label">Patient</div>
+            <div class="value">Sakura Tan</div>
+          </div>
+          <div class="pill-count-card">
+            <div class="label">MRN</div>
+            <div class="value">NGH-2026-04881</div>
+          </div>
+          <div class="pill-count-card">
+            <div class="label">Ward / Bed</div>
+            <div class="value">6B / 12</div>
+          </div>
+          <div class="pill-count-card">
+            <div class="label">Date / Time</div>
+            <div class="value">27 Mar · 16:00</div>
+          </div>
+        </div>
+
+        <div class="pill-count-note-box">
+          Simple medication count chart for ward use. Count the tablets before administration, record the quantity given, then confirm the remaining balance. Any mismatch should be documented and escalated.
+        </div>
+
+        <div class="form-grid" style="margin-bottom:18px">
+          <div class="form-group">
+            <label>Count Type <span class="required">*</span></label>
+            <select>
+              <option>Routine Medication Round</option>
+              <option>Shift Handover Count</option>
+              <option>Admission Count</option>
+              <option>Discharge / Return Count</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Checked By <span class="required">*</span></label>
+            <input type="text" value="Nurse Sarah" />
+          </div>
+        </div>
+
+        <div class="pill-chart-wrap">
+          <table class="pill-chart-table">
+            <thead>
+              <tr>
+                <th>Medication</th>
+                <th>Opening Count</th>
+                <th>Given</th>
+                <th>Expected Balance</th>
+                <th>Actual Balance</th>
+                <th>Difference</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(row => `
+                <tr class="pill-count-row">
+                  <td>
+                    <div class="pill-med-name">${row.name}</div>
+                    <div class="pill-med-sub">${row.detail}</div>
+                  </td>
+                  <td><input class="pill-opening" type="number" value="${row.opening}" min="0" oninput="updatePillCountRows()" /></td>
+                  <td><input class="pill-given" type="number" value="${row.given}" min="0" oninput="updatePillCountRows()" /></td>
+                  <td><input class="pill-expected" type="number" value="0" readonly /></td>
+                  <td><input class="pill-actual" type="number" value="${row.remaining}" min="0" oninput="updatePillCountRows()" /></td>
+                  <td><span class="variance-pill">0</span></td>
+                  <td>
+                    <select class="pill-action">
+                      <option>No issue</option>
+                      <option>Recount</option>
+                      <option>Inform nurse-in-charge</option>
+                      <option>Pharmacy review</option>
+                    </select>
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pill-count-note">
+          <div class="form-group">
+            <label>Remarks / Discrepancy Notes</label>
+            <textarea placeholder="Example: Recount done. One tablet found in medication cup. Balance corrected."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Nurse Signature / Initials</label>
+            <input type="text" placeholder="Name / initials" />
+            <label style="margin-top:12px">Second Checker, if required</label>
+            <input type="text" placeholder="Optional" />
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="secondary-btn" onclick="closeModal()">Cancel</button>
+          <button class="save-btn" onclick="closeModal()">Save Count</button>
+        </div>
+      `;
+    }
+
+    function updatePillCountRows() {
+      document.querySelectorAll(".pill-count-row").forEach(row => {
+        const opening = Number(row.querySelector(".pill-opening")?.value || 0);
+        const given = Number(row.querySelector(".pill-given")?.value || 0);
+        const actual = Number(row.querySelector(".pill-actual")?.value || 0);
+        const expected = Math.max(opening - given, 0);
+        const diff = actual - expected;
+        const expectedInput = row.querySelector(".pill-expected");
+        const diffEl = row.querySelector(".variance-pill");
+        const action = row.querySelector(".pill-action");
+
+        if (expectedInput) expectedInput.value = expected;
+        if (diffEl) {
+          diffEl.textContent = diff > 0 ? `+${diff}` : `${diff}`;
+          diffEl.className = "variance-pill";
+          if (Math.abs(diff) >= 2) diffEl.classList.add("danger");
+          else if (diff !== 0) diffEl.classList.add("warn");
+        }
+
+        if (action && diff !== 0 && action.value === "No issue") action.value = "Recount";
+        if (action && diff === 0 && action.value === "Recount") action.value = "No issue";
+      });
+    }
+
 
     function openReadingModal(type) {
       let fields = "";
